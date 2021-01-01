@@ -17,7 +17,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col col-md-8">
+            <div class="col col-md-12  m-5">
+                <h1>Link Collector</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
                 <form class="form-inline" method="POST" action="/">
                     {% csrf_token %}
                     <div class="form-group">
@@ -28,13 +33,12 @@
                     <a href="/delete" type="submit" class="btn btn-danger mb-5 mr-sm-5">Delete</a>
                 </form>
             </div>
-            <div class="col col-md-4"></div>
         </div>
 
         <br/>
 
         <div class="row">
-            <div class="col col-md-8">
+            <div class="col col-md-12">
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
@@ -53,8 +57,6 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
-            <div class="col col-md-4">
             </div>
         </div>
     </div>
