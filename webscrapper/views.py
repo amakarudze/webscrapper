@@ -9,15 +9,23 @@ from .models import Link
 
 
 def scrape(request):
-    page = requests.get('https://www.google.com')
-    soup = BeautifulSoup(page.text, 'html.parser')
+    if request.method == 'POST':
+        site = request.POST['site']
 
-    for link in soup.find_all('a'):
-        link_address = link.get('href')
-        link_text = link.string
+        page = requests.get(site)
+        soup = BeautifulSoup(page.text, 'html.parser')
 
-        Link.objects.create(address=link_address, name=link_text)
+        for link in soup.find_all('a'):
+            link_address = link.get('href')
+            link_text = link.string
+
+            Link.objects.create(address=link_address, name=link_text)
 
     data = Link.objects.all()
 
     return render(request, 'webscrapper/result.html', {'data': data})
+
+
+def delete(request):
+    Link.objects.all().delete()
+    return render(request, 'webscrapper/result.html')
